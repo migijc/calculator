@@ -110,6 +110,7 @@ const getNumberTwo= function(){
 
     const runCalc= function(){
         returnValue= operate(theOperator,numb1,numb2)
+        console.log(returnValue)
         display.textContent=returnValue
         operateOnReturnValue()
     }
@@ -164,12 +165,13 @@ const getNumberTwo= function(){
         }
     }
 
+    let newReturnValue=0
     const hitEqual= function(theOperator,num1,num2){
         const buttonEqual=document.querySelector(".buttonEqual")
         buttonEqual.addEventListener("click", () => {
-            let newReturnValue= operate(theOperator,num1,num2)
+            newReturnValue= operate(theOperator,num1,num2)
             returnValue=newReturnValue
-            display.textContent= returnValue
+            //display.textContent= returnValue
             num1=returnValue
             operateOnReturnValue()
         })
@@ -190,13 +192,23 @@ const getNumberTwo= function(){
          numb1= null;
          numb2=null;
          theOperator=""
-         returnValue= null
          numberOne=''
+         newReturnValue=0
          getNumberOne()
-
+         returnValue= null;
     })
 }
 
 x();
 
+allButtons.forEach((button) => {
+    button.addEventListener('mouseenter', () => {
+        button.classList.add("hovered")
+    })
+})
+allButtons.forEach((button) => {
+    button.addEventListener('mouseleave', () => {
+        button.classList.remove("hovered")
+    })
+})
     

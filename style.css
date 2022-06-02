@@ -58,7 +58,7 @@ html{
     display: flex;
     align-items: center;
     justify-content: end;
-    box-shadow: 1px 1px 6px   inset;
+    box-shadow: 1px 1px 6px inset;
     
 
 
@@ -107,7 +107,7 @@ button{
 }
 .numbersDisplay{
     display: flex;
-    margin-right: 30px;
+    margin-right: 15px;
     font-family:'Orbitron', sans-serif;
     font-size: 35px;
     color: #07beb8;
@@ -132,4 +132,16 @@ button{
 
 .buttonUndo{
     font-size: 14px;
+}
+
+.hovered{
+    background-color: white;
+    color:#07beb8
+}
+
+.buttonEqual.hovered{
+    background-color: #ec518c;
+    border-left:3px solid #ec518c;
+    
+
 }
