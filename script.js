@@ -14,6 +14,10 @@ const divide= function (num1, num2){
 };
 
 const operate = function (operator, number1, number2) {
+    if(operator=="/" && number1== 7 && number2==0){
+        document.location.reload()
+        alert('Dividing a number by 0 will cause the site to crash!')
+    }
     if(operator== "+"){
         return sum(number1, number2)
     } else if(operator=="-"){
@@ -230,3 +234,7 @@ allButtons.forEach((button) => {
             item.classList.remove("clicked")
         })
     })
+
+    notInteger()
+
+    
