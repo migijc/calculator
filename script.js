@@ -109,6 +109,8 @@ const getNumberTwo= function(){
 }
 
     const runCalc= function(){
+        //console.log(numb1)
+        //console.log(numb2)
         returnValue= operate(theOperator,numb1,numb2)
         console.log(returnValue)
         display.textContent=returnValue
@@ -121,6 +123,7 @@ const getNumberTwo= function(){
             button.addEventListener('click', ()=> {
                 stringOfNumTwo.push(button.textContent)
                 display.textContent=stringOfNumTwo.join('')
+                console.log(display.textContent)
             })
         })
     }
@@ -131,7 +134,9 @@ const getNumberTwo= function(){
         let num1= null
         let num2= null
         if(typeof returnValue== 'number'){
+            console.log(num1)
             num1= returnValue;
+            console.log(num1)
             const arrayOfOperatorButtons=[]
             const operatorPlus= document.querySelector(".buttonPlus")
             const operatorMinus= document.querySelector(".buttonMinus")
@@ -171,17 +176,9 @@ const getNumberTwo= function(){
         buttonEqual.addEventListener("click", () => {
             newReturnValue= operate(theOperator,num1,num2)
             returnValue=newReturnValue
-            //display.textContent= returnValue
+            display.textContent= returnValue
             num1=returnValue
             operateOnReturnValue()
-        })
-    }
-
-    arrayToEmpty= function(array){
-        const buttonEqual=document.querySelector(".buttonEqual")
-        buttonEqual.addEventListener("click", () => {
-            array=[]
-            console.log("hello")
         })
     }
 
@@ -211,4 +208,25 @@ allButtons.forEach((button) => {
         button.classList.remove("hovered")
     })
 })
-    
+
+
+    let notInteger= function(){
+        if(Number.isInteger(display.textContent) == false){
+            let displayText= 0
+            displayText= display.textContent
+            displayText= displayText.toFixed(2)
+            display.textContent=displayText
+        }
+    }
+
+    allButtons.forEach((item) => {
+        item.addEventListener("mousedown", () => {
+            item.classList.add("clicked")
+        })
+    })
+
+    allButtons.forEach((item) => {
+        item.addEventListener("mouseup", () => {
+            item.classList.remove("clicked")
+        })
+    })
