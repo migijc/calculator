@@ -32,10 +32,11 @@ let numb2=null;
 let theOperator=""
 let returnValue= null
 let numberOne=''
-let operationArray= [];
+//let operationArray= [];
 const allButtons=document.querySelectorAll("button")
 
 const getNumberOne= function (){
+    let operationArray= [];
     allButtons.forEach((button)=> {
         button.addEventListener("click", () => {
             operationArray.push(button.textContent)
@@ -124,6 +125,7 @@ const getNumberTwo= function(){
     }
 
     const operateOnReturnValue= function(){
+        x();
         let theOperator= ""
         let num1= null
         let num2= null
@@ -180,3 +182,21 @@ const getNumberTwo= function(){
             console.log("hello")
         })
     }
+
+    let x= function (){
+    const buttonClear= document.querySelector(".theButtonClear");
+    buttonClear.addEventListener("click", () => {
+        display.textContent="0"
+         numb1= null;
+         numb2=null;
+         theOperator=""
+         returnValue= null
+         numberOne=''
+         getNumberOne()
+
+    })
+}
+
+x();
+
+    
