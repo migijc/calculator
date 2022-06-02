@@ -5,7 +5,8 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 6px solid black;
+    background-color: #C4fff9;
+    font-family: 'Roboto', sans-serif;
     min-height: 99vh;
     
     
@@ -13,14 +14,16 @@ body{
 }
 .calculator{
  
-    border:2px solid black;
-    width: 400px;
-    height: 600px;
+    border:18px solid #07beb8;
+    width: 320px;
+    height: max-content;
     flex-shrink: 0;
     display: flex;
     flex-direction: column-reverse;
     justify-content: start;
     align-items: stretch;
+    border-radius: 10px;
+    
 
     
     
@@ -28,12 +31,16 @@ body{
 
 .footer{
     width: 100%;
-    height: 40px;
+    height: 50px;
     bottom: 0;
-    border:2px solid black;
+    border:2px solid #07beb8;
     position: fixed;
-    background-color: black;
+    background-color: #07beb8;
     color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
    
     
     
@@ -45,8 +52,12 @@ html{
 
 .display {
     height:100px;
-    border:2px solid Blue;
-    width: 400px;
+    background-color: #ffffff;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
 
 }
 
@@ -56,6 +67,11 @@ button{
     flex:1;
     margin:0;
     padding:0;
+    background-color: #68d8d6;
+    color:#ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid black;
     
     
 }
@@ -64,19 +80,48 @@ button{
 .row2,
 .row3,
 .row4 {
-    border: 1px solid black;
+    border: 1px solid #68d8d6;
     display: flex;
     justify-content: stretch;
+    border: none;
 }
 
 .buttonEqual{
     flex:2;
-    border:4px solid black
+    border-left:3px solid #c4fff9;
+    background-color: #c4fff9;
+    color:#ec518c;
+    font-size: 20px;
+    font-weight: 800;
+    
+    
+    
 }
 
 .clicked{
     background-color: black;
 }
+.numbersDisplay{
+    display: flex;
+    margin-right: 30px;
+    font-family:'Orbitron', sans-serif;
+    font-size: 35px;
+    color: #07beb8;
 
 
+}
+.buttonClear{
+    background-color: #c4fff9;
+    color:#ec518c;
 
+
+}
+
+.buttonPlus,
+.buttonMinus,
+.buttonMultiply,
+.buttonDivide {
+    color: #ec518c;
+    font-size: 14px;
+    font-style: italic;
+}

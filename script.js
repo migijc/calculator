@@ -25,114 +25,103 @@ const operate = function (operator, number1, number2) {
     };
 };
 
-const display= document.querySelector(".display");
-display.textContent="test"
+const display= document.querySelector(".numbersDisplay");
+display.textContent="0"
 let numb1= null;
 let numb2=null;
 let theOperator=""
 let returnValue= null
 let numberOne=''
-
 let operationArray= [];
 const allButtons=document.querySelectorAll("button")
+
 const getNumberOne= function (){
-allButtons.forEach((button)=> {
-    button.addEventListener("click", () => {
-        operationArray.push(button.textContent)
-        display.textContent= operationArray.join("")
-        const num1= operationArray.join("")
-        switch(true){
-            case (button.textContent == '+'):
-                displayAfterOperator();
-               currentOperation= num1
-               display.textContent= (`${parseInt(currentOperation)}`)
-               numberOne= parseInt(num1)
-               numb1= numberOne   
-               theOperator= "+"
-               return getNumberTwo();
-               break;
-            case (button.textContent == '-'):
-                displayAfterOperator();
-                currentOperation= `${num1} -`
-                display.textContent= (`${parseInt(currentOperation)}`)
-                numberOne= parseInt(num1)
-                numb1= numberOne   
-                theOperator= "-"
-                return getNumberTwo();
-                break;
-            case (button.textContent == '*'):
-                displayAfterOperator();
-                 currentOperation= `${num1} *`
-                display.textContent= (`${parseInt(currentOperation)}`)
-                numberOne= parseInt(num1)
-                numb1= numberOne   
-                theOperator= "*"
-                return getNumberTwo();
-
-                break;
-            case (button.textContent == '/'):
-                displayAfterOperator();
-                currentOperation= `${num1} /`
-                display.textContent= (`${parseInt(currentOperation)}`)
-                numberOne= parseInt(num1)
-                numb1= numberOne   
-                theOperator= "/"
-                return getNumberTwo();
-                break;
-
-        };      
+    allButtons.forEach((button)=> {
+        button.addEventListener("click", () => {
+            operationArray.push(button.textContent)
+            display.textContent= operationArray.join("")
+            const num1= operationArray.join("")
+            switch(true){
+                case (button.textContent == '+'):
+                    displayAfterOperator();
+                    currentOperation= num1
+                    display.textContent= (`${parseInt(currentOperation)}`)
+                    numberOne= parseInt(num1)
+                    numb1= numberOne   
+                    theOperator= "+"
+                    return getNumberTwo();
+                    break;
+                case (button.textContent == '-'):
+                    displayAfterOperator();
+                    currentOperation= `${num1} -`
+                    display.textContent= (`${parseInt(currentOperation)}`)
+                    numberOne= parseInt(num1)
+                    numb1= numberOne   
+                    theOperator= "-"
+                    return getNumberTwo();
+                    break;
+                case (button.textContent == '*'):
+                    displayAfterOperator();
+                    currentOperation= `${num1} *`
+                    display.textContent= (`${parseInt(currentOperation)}`)
+                    numberOne= parseInt(num1)
+                    numb1= numberOne   
+                    theOperator= "*"
+                    return getNumberTwo();
+                    break;
+                case (button.textContent == '/'):
+                 displayAfterOperator();
+                 currentOperation= `${num1} /`
+                 display.textContent= (`${parseInt(currentOperation)}`)
+                    numberOne= parseInt(num1)
+                    numb1= numberOne   
+                    theOperator= "/"
+                    return getNumberTwo();
+                    break;
+                };      
+        });
     });
-});
 }
 getNumberOne();
 
 
 const getNumberTwo= function(){
-const buttonEqual=document.querySelector(".buttonEqual")
-buttonEqual.addEventListener("click", () => {
-    let numberTwoToNum=0;
-    if(theOperator== '+'){
-        numberTwoToNum = parseInt(display.textContent.split('+').pop());
-        numb2= numberTwoToNum;
-    } else if (theOperator== '-'){
-        numberTwoToNum = parseInt(display.textContent.split('-').pop());
-        numb2= numberTwoToNum;
-    } else if(theOperator== '*'){
-        numberTwoToNum = parseInt(display.textContent.split('*').pop());
-        numb2= numberTwoToNum;
-    } else if(theOperator== '/'){
-        numberTwoToNum = parseInt(display.textContent.split('/').pop());
-        numb2= numberTwoToNum;
-    };
-    runCalc()
-    return numb2= numberTwoToNum;
-    
-    
-})
+        const buttonEqual=document.querySelector(".buttonEqual")
+        buttonEqual.addEventListener("click", () => {
+            let numberTwoToNum=0;
+            if(theOperator== '+'){
+                numberTwoToNum = parseInt(display.textContent.split('+').pop());
+                numb2= numberTwoToNum;
+            } else if (theOperator== '-'){
+                 numberTwoToNum = parseInt(display.textContent.split('-').pop());
+                numb2= numberTwoToNum;
+            } else if(theOperator== '*'){
+                numberTwoToNum = parseInt(display.textContent.split('*').pop());
+                numb2= numberTwoToNum;
+            } else if(theOperator== '/'){
+                numberTwoToNum = parseInt(display.textContent.split('/').pop());
+                numb2= numberTwoToNum;
+            };
+        runCalc()
+        return numb2= numberTwoToNum;
+        })
 }
+
     const runCalc= function(){
         returnValue= operate(theOperator,numb1,numb2)
         display.textContent=returnValue
         operateOnReturnValue()
     }
-
-  
-    
-    
+   
     let displayAfterOperator= function() {
         const stringOfNumTwo = []
         allButtons.forEach((button) => {
             button.addEventListener('click', ()=> {
                 stringOfNumTwo.push(button.textContent)
-                display.textContent=stringOfNumTwo.join('');
-
+                display.textContent=stringOfNumTwo.join('')
             })
-            
         })
-        
     }
-
-   console.log(allButtons)
 
     const operateOnReturnValue= function(){
         let theOperator= ""
@@ -149,7 +138,8 @@ buttonEqual.addEventListener("click", () => {
             arrayOfOperatorButtons.push(operatorMinus)
             arrayOfOperatorButtons.push(operatorMultiply)
             arrayOfOperatorButtons.push(operatorDivide)
-            const newNumTwoArray= []
+            let newNumTwoArray= []
+            
             arrayOfOperatorButtons.forEach((button) => {
                 button.addEventListener("click", () => {
                     display.textContent=num1;
@@ -158,19 +148,20 @@ buttonEqual.addEventListener("click", () => {
                     allButtons.forEach((item) => {
                         item.addEventListener('click', () => {
                             newNumTwoArray.push(item.textContent)
-                            newNumTwo=parseInt(newNumTwoArray.join(''))
+                            let newNumTwo=parseInt(newNumTwoArray.join(''))
                             num2=newNumTwo;
                             display.textContent=newNumTwo
+                            console.log(newNumTwoArray)
                             hitEqual(theOperator,num1,num2)
                         })
                         
                     })
                 })
             })
+            
         }
     }
 
-    
     const hitEqual= function(theOperator,num1,num2){
         const buttonEqual=document.querySelector(".buttonEqual")
         buttonEqual.addEventListener("click", () => {
@@ -179,8 +170,13 @@ buttonEqual.addEventListener("click", () => {
             display.textContent= returnValue
             num1=returnValue
             operateOnReturnValue()
-            
-            
         })
     }
 
+    arrayToEmpty= function(array){
+        const buttonEqual=document.querySelector(".buttonEqual")
+        buttonEqual.addEventListener("click", () => {
+            array=[]
+            console.log("hello")
+        })
+    }
