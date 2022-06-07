@@ -66,7 +66,7 @@ numberButtons.push(buttonEight)
 numberButtons.push(buttonNine)
 
 const display= document.querySelector(".numbersDisplay");
-
+display.textContent='0'
 const allButtons=document.querySelectorAll("button")
 
 let numb1="";
