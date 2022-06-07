@@ -66,16 +66,16 @@ numberButtons.push(buttonEight)
 numberButtons.push(buttonNine)
 
 const display= document.querySelector(".numbersDisplay");
-display.textContent='0'
-const allButtons=document.querySelectorAll("button")
+display.textContent='0';
+const allButtons=document.querySelectorAll("button");
 
 let numb1="";
 let numb2='';
-let theOperator=null
-let returnValue=null
-let num1
-let OperationString =''
-let indexOfOperator= null
+let theOperator=null;
+let returnValue=null;
+let num1;
+let OperationString ='';
+let indexOfOperator= null;
 
 getOperation()
 function getOperation (){
@@ -99,8 +99,8 @@ function getOperation (){
 arrayOfOperatorButtons.forEach((operator) => {
     operator.addEventListener('click', () => {
         OperationString=OperationString+operator.textContent
-        indexOfOperator= OperationString.indexOf(operator.textContent)
-        theOperator=operator.textContent
+        indexOfOperator= OperationString.indexOf(operator.textContent);
+        theOperator=operator.textContent;
     })
 })
 
@@ -111,35 +111,45 @@ function getNumb1(){
     } else {
     numb1=parseInt(OperationString)
     //numberOneHasDecimal()
-    }
-}
+    };
+};
 
 function getNumb2(){
-    let num2= OperationString.substring(indexOfOperator+1)
-    numb2= parseInt(num2)
-}
+    let num2= OperationString.substring(indexOfOperator+1);
+    numb2= parseInt(num2);
+};
 
 buttonEqual.addEventListener('click', () => {
     getNumb1()
     getNumb2()
-    console.log(numb1)
-    console.log(numb2)
-    returnValue= operate(theOperator, numb1, numb2)
-    display.textContent=returnValue
-    hasDecimal()
-    OperationString= returnValue
+    if(typeof numb1== "number" && numb2==0){
+        display.textContent= "Err"
+        numb1="";
+        numb2='';
+        theOperator=null
+        returnValue=null
+        num1
+        OperationString =''
+        indexOfOperator= null
+    }else{
+        console.log(numb1)
+        console.log(numb2)
+        returnValue= operate(theOperator, numb1, numb2)
+        display.textContent=returnValue
+        hasDecimal()
+        OperationString= returnValue
+    };
 })
 
 
 buttonClear.addEventListener('click', () => {
-    display.textContent= 0
+    display.textContent= 0;
     numb1="";
     numb2='';
-    theOperator=null
-    returnValue=null
-    num1
-    OperationString =''
-    indexOfOperator= null
+    theOperator=null;
+    returnValue=null;
+    OperationString ='';
+    indexOfOperator= null;
 })
 
 
