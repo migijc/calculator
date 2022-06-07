@@ -1,3 +1,4 @@
+
 const sum= function (num1, num2){
     return num1 + num2
 };
@@ -22,185 +23,143 @@ const operate = function (operator, number1, number2) {
         return sum(number1, number2)
     } else if(operator=="-"){
         return subtract(number1, number2)
-    } else if(operator== "*"){
+    } else if(operator== "x"){
         return multiply(number1,number2)
-    } else if(operator=="/"){
+    } else if(operator=="÷"){
         return divide(number1,number2)
     };
 };
 
+const arrayOfOperatorButtons=[]
+const operatorPlus= document.querySelector(".buttonPlus")
+const operatorMinus= document.querySelector(".buttonMinus")
+const operatorMultiply= document.querySelector(".buttonMultiply")
+const operatorDivide= document.querySelector(".buttonDivide")
+arrayOfOperatorButtons.push(operatorPlus)
+arrayOfOperatorButtons.push(operatorMinus)
+arrayOfOperatorButtons.push(operatorMultiply)
+arrayOfOperatorButtons.push(operatorDivide)
+
+const buttonClear= document.querySelector(".theButtonClear");
+const buttonEqual=document.querySelector(".buttonEqual")
+
+const numberButtons=[];
+const buttonZero=document.querySelector(".button0")
+const buttonOne=document.querySelector(".button1")
+const buttonTwo=document.querySelector(".button2")
+const buttonThree=document.querySelector(".button3")
+const buttonFour=document.querySelector(".button4")
+const buttonFive=document.querySelector(".button5")
+const buttonSix=document.querySelector(".button6")
+const buttonSeven=document.querySelector(".button7")
+const buttonEight=document.querySelector(".button8")
+const buttonNine=document.querySelector(".button9")
+numberButtons.push(buttonZero)
+numberButtons.push(buttonOne)
+numberButtons.push(buttonTwo)
+numberButtons.push(buttonThree)
+numberButtons.push(buttonFour)
+numberButtons.push(buttonFive)
+numberButtons.push(buttonSix)
+numberButtons.push(buttonSeven)
+numberButtons.push(buttonEight)
+numberButtons.push(buttonNine)
+
 const display= document.querySelector(".numbersDisplay");
-display.textContent="0"
-let numb1= null;
-let numb2=null;
-let theOperator=""
-let returnValue= null
-let numberOne=''
-//let operationArray= [];
+
 const allButtons=document.querySelectorAll("button")
 
-const getNumberOne= function (){
-    let operationArray= [];
-    allButtons.forEach((button)=> {
-        button.addEventListener("click", () => {
-            operationArray.push(button.textContent)
-            display.textContent= operationArray.join("")
-            const num1= operationArray.join("")
-            switch(true){
-                case (button.textContent == '+'):
-                    displayAfterOperator();
-                    currentOperation= num1
-                    display.textContent= (`${parseInt(currentOperation)}`)
-                    numberOne= parseInt(num1)
-                    numb1= numberOne   
-                    theOperator= "+"
-                    return getNumberTwo();
-                    break;
-                case (button.textContent == '-'):
-                    displayAfterOperator();
-                    currentOperation= `${num1} -`
-                    display.textContent= (`${parseInt(currentOperation)}`)
-                    numberOne= parseInt(num1)
-                    numb1= numberOne   
-                    theOperator= "-"
-                    return getNumberTwo();
-                    break;
-                case (button.textContent == '*'):
-                    displayAfterOperator();
-                    currentOperation= `${num1} *`
-                    display.textContent= (`${parseInt(currentOperation)}`)
-                    numberOne= parseInt(num1)
-                    numb1= numberOne   
-                    theOperator= "*"
-                    return getNumberTwo();
-                    break;
-                case (button.textContent == '/'):
-                 displayAfterOperator();
-                 currentOperation= `${num1} /`
-                 display.textContent= (`${parseInt(currentOperation)}`)
-                    numberOne= parseInt(num1)
-                    numb1= numberOne   
-                    theOperator= "/"
-                    return getNumberTwo();
-                    break;
-                };      
-        });
-    });
-}
-getNumberOne();
+let numb1="";
+let numb2='';
+let theOperator=null
+let returnValue=null
+let num1
+let OperationString =''
+let indexOfOperator= null
 
-
-const getNumberTwo= function(){
-        const buttonEqual=document.querySelector(".buttonEqual")
-        buttonEqual.addEventListener("click", () => {
-            let numberTwoToNum=0;
-            if(theOperator== '+'){
-                numberTwoToNum = parseInt(display.textContent.split('+').pop());
-                numb2= numberTwoToNum;
-            } else if (theOperator== '-'){
-                 numberTwoToNum = parseInt(display.textContent.split('-').pop());
-                numb2= numberTwoToNum;
-            } else if(theOperator== '*'){
-                numberTwoToNum = parseInt(display.textContent.split('*').pop());
-                numb2= numberTwoToNum;
-            } else if(theOperator== '/'){
-                numberTwoToNum = parseInt(display.textContent.split('/').pop());
-                numb2= numberTwoToNum;
-            };
-        runCalc()
-        return numb2= numberTwoToNum;
+getOperation()
+function getOperation (){
+    if(typeof OperationString=="number"){
+        return OperationString
+    } else{
+    numberButtons.forEach((number) => {
+        number.addEventListener('click', () => {
+            OperationString=OperationString+ number.textContent
+            if(typeof indexOfOperator== "number"){
+                display.textContent= OperationString.substring(indexOfOperator+1)
+            } else{
+            display.textContent= OperationString
+            }
         })
-}
-
-    const runCalc= function(){
-        //console.log(numb1)
-        //console.log(numb2)
-        returnValue= operate(theOperator,numb1,numb2)
-        console.log(returnValue)
-        display.textContent=returnValue
-        operateOnReturnValue()
-    }
-   
-    let displayAfterOperator= function() {
-        const stringOfNumTwo = []
-        allButtons.forEach((button) => {
-            button.addEventListener('click', ()=> {
-                stringOfNumTwo.push(button.textContent)
-                display.textContent=stringOfNumTwo.join('')
-                console.log(display.textContent)
-            })
-        })
-    }
-
-    const operateOnReturnValue= function(){
-        x();
-        let theOperator= ""
-        let num1= null
-        let num2= null
-        if(typeof returnValue== 'number'){
-            console.log(num1)
-            num1= returnValue;
-            console.log(num1)
-            const arrayOfOperatorButtons=[]
-            const operatorPlus= document.querySelector(".buttonPlus")
-            const operatorMinus= document.querySelector(".buttonMinus")
-            const operatorMultiply= document.querySelector(".buttonMultiply")
-            const operatorDivide= document.querySelector(".buttonDivide")
-            arrayOfOperatorButtons.push(operatorPlus)
-            arrayOfOperatorButtons.push(operatorMinus)
-            arrayOfOperatorButtons.push(operatorMultiply)
-            arrayOfOperatorButtons.push(operatorDivide)
-            let newNumTwoArray= []
-            
-            arrayOfOperatorButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    display.textContent=num1;
-                    let newOperator= button.textContent
-                    theOperator=newOperator;
-                    allButtons.forEach((item) => {
-                        item.addEventListener('click', () => {
-                            newNumTwoArray.push(item.textContent)
-                            let newNumTwo=parseInt(newNumTwoArray.join(''))
-                            num2=newNumTwo;
-                            display.textContent=newNumTwo
-                            console.log(newNumTwoArray)
-                            hitEqual(theOperator,num1,num2)
-                        })
-                        
-                    })
-                })
-            })
-            
-        }
-    }
-
-    let newReturnValue=0
-    const hitEqual= function(theOperator,num1,num2){
-        const buttonEqual=document.querySelector(".buttonEqual")
-        buttonEqual.addEventListener("click", () => {
-            newReturnValue= operate(theOperator,num1,num2)
-            returnValue=newReturnValue
-            display.textContent= returnValue
-            num1=returnValue
-            operateOnReturnValue()
-        })
-    }
-
-    let x= function (){
-    const buttonClear= document.querySelector(".theButtonClear");
-    buttonClear.addEventListener("click", () => {
-        display.textContent="0"
-         numb1= null;
-         numb2=null;
-         theOperator=""
-         numberOne=''
-         newReturnValue=0
-         getNumberOne()
-         returnValue= null;
     })
 }
+}
 
-x();
+
+arrayOfOperatorButtons.forEach((operator) => {
+    operator.addEventListener('click', () => {
+        OperationString=OperationString+operator.textContent
+        indexOfOperator= OperationString.indexOf(operator.textContent)
+        theOperator=operator.textContent
+    })
+})
+
+function getNumb1(){
+    let num1DecimalPlace= OperationString.indexOf('.')
+    if(num1DecimalPlace > -1){
+        numb1=returnValue
+    } else {
+    numb1=parseInt(OperationString)
+    //numberOneHasDecimal()
+    }
+}
+
+function getNumb2(){
+    let num2= OperationString.substring(indexOfOperator+1)
+    numb2= parseInt(num2)
+}
+
+buttonEqual.addEventListener('click', () => {
+    getNumb1()
+    getNumb2()
+    console.log(numb1)
+    console.log(numb2)
+    returnValue= operate(theOperator, numb1, numb2)
+    display.textContent=returnValue
+    hasDecimal()
+    OperationString= returnValue
+})
+
+
+buttonClear.addEventListener('click', () => {
+    display.textContent= 0
+    numb1="";
+    numb2='';
+    theOperator=null
+    returnValue=null
+    num1
+    OperationString =''
+    indexOfOperator= null
+})
+
+
+let returnValueWithDecimal
+function hasDecimal(){
+    if(returnValue %1 == 0){
+        display.textContent=display.textContent
+} else {
+    display.textContent=returnValue.toFixed(2)
+}
+}
+
+
+
+function numberOneHasDecimal(){
+       let num1DecimalPlace= OperationString.indexOf('.')
+       if(num1DecimalPlace > -1){
+           numb1=returnValue
+       }
+}
 
 allButtons.forEach((button) => {
     button.addEventListener('mouseenter', () => {
@@ -214,14 +173,7 @@ allButtons.forEach((button) => {
 })
 
 
-    let notInteger= function(){
-        if(Number.isInteger(display.textContent) == false){
-            let displayText= 0
-            displayText= display.textContent
-            displayText= displayText.toFixed(2)
-            display.textContent=displayText
-        }
-    }
+    
 
     allButtons.forEach((item) => {
         item.addEventListener("mousedown", () => {
@@ -234,7 +186,13 @@ allButtons.forEach((button) => {
             item.classList.remove("clicked")
         })
     })
+ 
+ 
 
-    notInteger()
+  
 
-    
+
+
+
+
+
